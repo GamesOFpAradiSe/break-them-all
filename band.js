@@ -14,6 +14,11 @@ class Band{
              this.Slingshot.bodyA = null;
               }
 
+              attach(j){
+             this.Slingshot.bodyA = j                
+              }
+
+             
    
 
              display(){

@@ -129,6 +129,7 @@ ground2.display()
 
 }
 
+
 function mouseDragged(){
     Matter.Body.setPosition(hex.body, {x: mouseX , y: mouseY});
 }
@@ -136,4 +137,11 @@ function mouseDragged(){
 
 function mouseReleased(){
     slingshot.fly();
+}
+
+function keyPressed(){
+if (keyCode === 32){
+ Matter.Body.setPosition(hex.body, {x: 370 , y: 150});
+slingshot.attach(hex.body)
+}
 }
