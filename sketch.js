@@ -3,12 +3,12 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
 
-var bg,consolve
+var bg,b,boy
 
 function preload(){
 	
     bg = loadImage("bg.jpg")
-   
+   b = loadImage("b.png")
 
 }
 
@@ -19,17 +19,20 @@ function setup() {
 	world = engine.world;
 
 	
-hex = new Hexa()
-slingshot = new Band(hex.body,{x:370,y:150})
+hex = new Hexa(256,488)
+slingshot = new Band(hex.body,{x:256,y:488})
 // normal ground
 ground = new Ground(width/2,height-50,width,15)	
-ground1 = new Ground(700,500,475,5)
-ground2 = new Ground(1300,300,400,5)
+ground1 = new Ground(700,500,400,5)
+ground2 = new Ground(1200,400,400,5)
 // wall
 lwall = new Ground(0,height/2,15,height)
 rwall = new Ground(width,height/2,15,height)
 twall = new Ground(width/2,0,width,15)
 
+boy = createSprite(185,485)
+boy.addImage(b)
+boy.scale = 0.5
  
 // stage 1 
 //4th row
@@ -52,17 +55,17 @@ box14 = new Box(700,350)
 box15 = new Box(750,350)
 // stage 2 
 //3rd row
-box21 = new Box(1200,280)
-box22 = new Box(1250,280)
-box23 = new Box(1300,280)
-box24 = new Box(1350,280)
-box25 = new Box(1400,280)
+box21 = new Box(1100,380)
+box22 = new Box(1150,380)
+box23 = new Box(1200,380)
+box24 = new Box(1250,380)
+box25 = new Box(1300,380)
 //2nd row
-box18 = new Box(1250,250)
-box19 = new Box(1300,250)
-box20 = new Box(1350,250)
+box18 = new Box(1150,300)
+box19 = new Box(1200,300)
+box20 = new Box(1250,300)
 //1st row
-box17 = new Box(1300,200)
+box17 = new Box(1200,250)
 box16 = new Box(700,300)
 	Engine.run(engine);
 
@@ -77,7 +80,7 @@ function draw() {
   
  
 
-
+  drawSprites();
  hex.display()
  slingshot.display()
  // stage 1 
@@ -132,16 +135,22 @@ ground2.display()
 
 function mouseDragged(){
     Matter.Body.setPosition(hex.body, {x: mouseX , y: mouseY});
+    
 }
 
 
 function mouseReleased(){
-    slingshot.fly();
+    slingshot.fly()
+    
+    
 }
+
+
+
 
 function keyPressed(){
 if (keyCode === 32){
- Matter.Body.setPosition(hex.body, {x: 370 , y: 150});
+ Matter.Body.setPosition(hex.body, {x: 256 , y: 488});
 slingshot.attach(hex.body)
 }
 }
